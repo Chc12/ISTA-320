@@ -1,0 +1,64 @@
+ISTA-320, Cohort 3
+C# Step by Step, Chapter 23
+October 16, 2017
+
+1. List two reasons for multitasking, and explain the rationale for them.
+To improve responsiveness: A long-running operation may involve tasks that do not
+require processor time. Common examples include I/O bound operations such as reading
+from or writing to a local disk or sending and receiving data across a network.
+
+To improve scalability If an operation is CPU bound, you can improve scalability by making
+efficient use of the processing resources available and using these resources to reduce the
+time required to execute the operation. 
+
+2. Explain Moore’s law. What does Moore’s law have to do with multitasking?
+states that the number of transistors that can be placed inexpensively on an integrated 
+circuit will increase exponentially,doubling approximately every two years. 
+
+3. In UWP, what namespace is used as the container for the multitasking methods?
+You can use the Thread class in the System.Threading namespace directly in your code. However, the
+Thread class is not available for Universal Windows Platform (UWP) apps; instead, you use the Task
+class.
+
+4. What is the difference between tasks and threads? Explain.
+When a program creates a Task object, the task is added to a global
+queue. When a thread becomes available, the task is removed from the global queue and is executed
+by that thread. 
+
+5. What is the ThreadPool?
+The ThreadPool class implements a number of optimizations and uses a work-stealing
+algorithm to ensure that threads are scheduled efficiently.
+
+6. What parameters does the Task() constructor take?
+ A Task object invokes this delegate when it is scheduled to run. The following example
+creates a Task object that uses a delegate to run the method called doWork:
+Task task = new Task(doWork);
+...
+private void doWork()
+{
+// The task runs this code when it is started
+...
+}
+
+7. How do you start a thread?
+Create an instance of either the ThreadStart delegate or the Parameterized
+ThreadStart delegate, and pass that into the constructor for Thread.
+
+8. What is the difference between the Start() and Run() methods?
+The Start method is overloaded, and you can optionally specify a TaskCreationOptions object to
+provide hints about how to schedule and run the task.
+
+The Run method takes an Action delegate specifying the operation to perform 
+(like the Task constructor), but starts the task running immediately. It returns a reference to
+the Task object. 
+
+9. What is the difference between creating independent tasks with Tasks 
+and paralleliztion with Parallel? Explain.
+The Task parallelization reduces the time taken for the application to run by spreading the computations 
+across multiple processor cores.
+
+10. Explain how manual cancellation works using a cancellation token.
+A cancellation token is a structure that represents a request to cancel one or more tasks. 
+An application that wants to cancel the task sets the Boolean IsCancellationRequested property 
+of this parameter to true. The method running in the task can query this property at various points
+during its processing.
